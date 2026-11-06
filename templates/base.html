@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Event Registration{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="header-inner">
+            <a class="site-name" href="{{ url_for('home') }}">College Event Desk</a>
+            <nav>
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('events') }}">Event Listing</a>
+                {% if user and user.role == 'student' %}
+                    <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                    <a href="{{ url_for('my_events') }}">My Events</a>
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                {% elif user and user.role == 'admin' %}
+                    <a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a>
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                {% else %}
+                    <a href="{{ url_for('register') }}">Student Register</a>
+                    <a href="{{ url_for('login') }}">Student Login</a>
+                    <a href="{{ url_for('admin_login') }}">Admin</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, text in messages %}
+                    <p class="flash {{ category }}">{{ text }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        Online Event Registration and Management System
+    </footer>
+</body>
+</html>

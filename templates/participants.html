@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Registered Participants{% endblock %}
+{% block content %}
+<h1>Registered Participants</h1>
+<p id="participants-event">Event: {{ event.title }} ({{ event.event_date }})</p>
+{% if people %}
+<table id="participants-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Student ID</th>
+            <th>Registered at</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for person in people %}
+        <tr>
+            <td>{{ person.name }}</td>
+            <td>{{ person.email }}</td>
+            <td>{{ person.student_id }}</td>
+            <td>{{ person.created_at }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No participants registered for this event yet.</p>
+{% endif %}
+<p><a href="{{ url_for('events') }}">Back to event listing</a></p>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Home - Event Desk{% endblock %}
+{% block content %}
+<h1>Online Event Registration and Management System</h1>
+<p>Register as a student, browse events, join an event, and view confirmation details.</p>
+
+<div class="module-list">
+    <div class="box">
+        <h2>Student registration</h2>
+        <p>Create a student account.</p>
+        <a class="btn" href="{{ url_for('register') }}">Open registration</a>
+    </div>
+    <div class="box">
+        <h2>Student login</h2>
+        <p>Login to open the dashboard.</p>
+        <a class="btn" href="{{ url_for('login') }}">Open login</a>
+    </div>
+    <div class="box">
+        <h2>Event listing</h2>
+        <p>See all college events.</p>
+        <a class="btn" href="{{ url_for('events') }}">View events</a>
+    </div>
+    <div class="box">
+        <h2>Admin dashboard</h2>
+        <p>Manage events and registrations.</p>
+        <a class="btn" href="{{ url_for('admin_login') }}">Admin login</a>
+    </div>
+</div>
+
+<h2>Upcoming events</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Event</th>
+            <th>Date</th>
+            <th>Venue</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for event in events %}
+        <tr>
+            <td>{{ event.title }}</td>
+            <td>{{ event.event_date }}</td>
+            <td>{{ event.venue }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<p class="hint">Demo student: student@college.edu / student123 &nbsp;|&nbsp; Admin: admin@college.edu / admin123</p>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Event Listing{% endblock %}
+{% block content %}
+<h1 id="events-title">Event Listing</h1>
+<p>Select an event to register or to view participants.</p>
+
+<table id="events-table">
+    <thead>
+        <tr>
+            <th>Event</th>
+            <th>Date</th>
+            <th>Venue</th>
+            <th>Seats</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for event in events %}
+        <tr class="event-row">
+            <td class="event-title">{{ event.title }}</td>
+            <td>{{ event.event_date }}</td>
+            <td>{{ event.venue }}</td>
+            <td>{{ event.registered_count }} / {{ event.capacity }}</td>
+            <td>
+                <a class="register-link" href="{{ url_for('event_register', event_id=event.id) }}">Register</a>
+                |
+                <a href="{{ url_for('participants', event_id=event.id) }}">View participants</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

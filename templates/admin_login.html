@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Admin Login{% endblock %}
+{% block content %}
+<h1>Admin Login</h1>
+<form id="admin-login-form" method="post" action="{{ url_for('admin_login') }}" class="form-box">
+    <label>Email
+        <input id="admin-email" name="email">
+    </label>
+    <label>Password
+        <input id="admin-password" name="password" type="password">
+    </label>
+    <button id="admin-login-btn" type="submit">Login</button>
+    {% if message %}
+    <p id="admin-message" class="message {{ message_type }}">{{ message }}</p>
+    {% else %}
+    <p id="admin-message" class="message"></p>
+    {% endif %}
+</form>
+<p class="hint">Use admin@college.edu / admin123</p>
+{% endblock %}

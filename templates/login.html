@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Student Login{% endblock %}
+{% block content %}
+<h1>Student Login</h1>
+{% if banner %}
+<p id="banner" class="message success">{{ banner }}</p>
+{% else %}
+<p id="banner" class="message"></p>
+{% endif %}
+
+<form id="login-form" method="post" action="{{ url_for('login') }}" class="form-box">
+    <label>Email
+        <input id="login-email" name="email">
+    </label>
+    <label>Password
+        <input id="login-password" name="password" type="password">
+    </label>
+    <button id="login-btn" type="submit">Login</button>
+    {% if message %}
+    <p id="login-message" class="message {{ message_type }}">{{ message }}</p>
+    {% else %}
+    <p id="login-message" class="message"></p>
+    {% endif %}
+</form>
+<p>New student? <a href="{{ url_for('register') }}">Register here</a></p>
+{% endblock %}

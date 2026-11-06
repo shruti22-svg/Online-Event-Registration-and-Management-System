@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Student Dashboard{% endblock %}
+{% block content %}
+<h1 id="dashboard-title">Student Dashboard</h1>
+<p id="welcome-text">Welcome, {{ user.name }}. Your registered events are listed below.</p>
+
+<h2>My registered events</h2>
+{% if my_regs %}
+<table id="my-events-table">
+    <thead>
+        <tr><th>Event</th><th>Date</th><th>Venue</th></tr>
+    </thead>
+    <tbody>
+        {% for row in my_regs %}
+        <tr>
+            <td>{{ row.title }}</td>
+            <td>{{ row.event_date }}</td>
+            <td>{{ row.venue }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p id="no-events">You have not registered for any event yet.</p>
+{% endif %}
+
+<h2>Available events</h2>
+<ul id="event-links">
+    {% for event in events %}
+    <li>
+        {{ event.title }} —
+        <a href="{{ url_for('event_register', event_id=event.id) }}">Register</a> |
+        <a href="{{ url_for('participants', event_id=event.id) }}">Participants</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

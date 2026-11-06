@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Student Registration{% endblock %}
+{% block content %}
+<h1 id="page-title">Student Registration</h1>
+<p>Create an account to register for events.</p>
+
+<form id="register-form" method="post" action="{{ url_for('register') }}" class="form-box" novalidate>
+    <label>Full name
+        <input id="name" name="name" value="{{ form.name if form else '' }}">
+    </label>
+    <label>Email
+        <input id="email" name="email" value="{{ form.email if form else '' }}">
+    </label>
+    <label>Password
+        <input id="password" name="password" type="password">
+    </label>
+    <label>Student ID
+        <input id="student_id" name="student_id" value="{{ form.student_id if form else '' }}">
+    </label>
+    <label>Phone
+        <input id="phone" name="phone" value="{{ form.phone if form else '' }}">
+    </label>
+    <button id="register-btn" type="submit">Register</button>
+    {% if message %}
+    <p id="register-message" class="message {{ message_type }}">{{ message }}</p>
+    {% else %}
+    <p id="register-message" class="message"></p>
+    {% endif %}
+</form>
+<p>Already registered? <a href="{{ url_for('login') }}">Go to login</a></p>
+{% endblock %}

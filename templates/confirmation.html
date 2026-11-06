@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Registration Confirmation{% endblock %}
+{% block content %}
+<h1 id="confirm-title">Registration Confirmation</h1>
+<p id="confirm-text">Your event registration is confirmed.</p>
+<div class="box" id="confirmation-card">
+    <p><strong>Confirmation ID:</strong> {{ record.id }}</p>
+    <p><strong>Student:</strong> {{ record.name }}</p>
+    <p><strong>Email:</strong> {{ record.email }}</p>
+    <p><strong>Student ID:</strong> {{ record.student_id }}</p>
+    <p><strong>Event:</strong> <span id="confirmed-event">{{ record.title }}</span></p>
+    <p><strong>Date:</strong> {{ record.event_date }}</p>
+    <p><strong>Venue:</strong> {{ record.venue }}</p>
+    <p><strong>Registered at:</strong> {{ record.created_at }}</p>
+</div>
+<p>
+    <a href="{{ url_for('my_events') }}">View my registered events</a> |
+    <a href="{{ url_for('events') }}">Back to event listing</a>
+</p>
+{% endblock %}

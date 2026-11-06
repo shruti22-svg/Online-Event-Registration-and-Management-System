@@ -1,0 +1,17 @@
+services:
+  app:
+    build: .
+    image: event-registration-system:latest
+    container_name: event-registration-app
+    ports:
+      - "5002:5000"
+    environment:
+      PORT: 5000
+      EVENT_DB: /app/database/events.db
+      SECRET_KEY: event-reg-college-key
+    volumes:
+      - event_data:/app/database
+    restart: unless-stopped
+
+volumes:
+  event_data:
